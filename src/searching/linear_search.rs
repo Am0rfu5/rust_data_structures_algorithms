@@ -1,4 +1,10 @@
-// Linear Search Algorithms
+/** O(n) Linear Time Complexity
+ * 
+ * Example - Linear Search Algorithm
+ * 
+ * A Linear search is also called a Basic Search.
+ * For unordered data, the most basic search is walking an array.
+ */
 pub fn linear_search<T: PartialEq>(arr: &[T], target: &T) -> Option<usize> {
     for (i, item) in arr.iter().enumerate() {
         if item == target {
