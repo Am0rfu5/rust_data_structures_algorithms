@@ -1,1 +1,2 @@
-pub mod big_o;
+pub mod linked_lists;
+pub mod arrays;
