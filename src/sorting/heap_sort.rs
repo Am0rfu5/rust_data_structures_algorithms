@@ -1,5 +1,18 @@
 use std::collections::BinaryHeap;
 
+/**
+ * Heap Sort
+ * 
+ * Time Complexity: O(n log n) Linearithmic Time Complexity
+ * Space Complexity: O(1) Constant Space Complexity
+ * 
+ * Heap sort is a comparison based sorting technique based on Binary Heap data structure. 
+ * It is similar to selection sort where we first find the maximum element and place the
+ * maximum element at the end. We repeat the same process for remaining element.
+ * 
+ * Heap sort is an in-place algorithm. 
+ * It does not require any extra space (space complexity O(1)
+ */
 pub fn heap_sort<T: Ord>(mut vec: Vec<T>) -> Vec<T> {
     // Create a new max heap and add all the elements from the vector to it.
     let mut heap = BinaryHeap::new();
