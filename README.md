@@ -2,6 +2,8 @@
 
 This repository contains implementations of various data structures and algorithms in Rust. This is a way to learn Rust by example.
 
+Eventually it is my hope that this library may be used to for evaluating performance for each algorithm in order to provide more insight for understanding and selection under various conditions.
+
 ## Setup
 
 - You need to have Rust installed. I recommend using [rustup](https://rustup.rs/).
