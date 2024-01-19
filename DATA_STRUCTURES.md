@@ -1,5 +1,10 @@
 # Data Structures
 
+
+For Rust specific visualization of the metadata for heap containers (e.g. Box, Vec, Rc, Arc, Cell) checkout  https://docs.google.com/presentation/d/1q-c7UAyrUlM-eZyTo1pd8SZ0qwA_wYxmPZVOQkoDmH4/edit#slide=id.p
+
+## Overview
+
 This will be more filled out upon completion with links.  For now go to the [src](src/data_structures/) directory to see progress.
 
 - Linked List
