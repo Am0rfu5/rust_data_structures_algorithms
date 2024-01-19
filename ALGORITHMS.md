@@ -1,73 +1,73 @@
 # Algorithms
 
-This needs to be filled out with links to the examples. Here is a list of some algorithms broken down into a general categories.
+!!!NOTE This is entire repo is still in early development. These categorization and list items may or may not be included.
+
+## Resources
+
+There is a great visualization at [VisuAlgo](https://visualgo.net/en) that shows how each of these data structures work.  I highly recommend checking it out.
+
+## Jargon
+
+- Turtles: Small values near the end of the list.
+- Rabbits: Large values around the beginning of the list.
+- Pigeonholes: Buckets used in pigeonhole sort.
+- Bitonic Sequence: A sequence that increases and then decreases, or vice versa.
 
 ## Sorting
 
-- Bubble Sort
-- Selection Sort
-- Insertion Sort
-- Merge Sort
-- Quick Sort
-- Heap Sort
-- Radix Sort
-- Counting Sort
-- Bucket Sort
-- Shell Sort
-- Cocktail Sort
-- Comb Sort
-- Gnome Sort
-- Odd-Even Sort
-- Cycle Sort
-- Stooge Sort
-- Pigeonhole Sort
-- Bitonic Sort
-- Pancake Sort
-- Bogo Sort
-- Sleep Sort
-- Bead Sort
-- Binary Tree Sort
-- Batcher's Odd-Even Mergesort
-- Smoothsort
-- Tournament Sort
-- Cocktail Shaker Sort
-- Strand Sort
-- Brick Sort
-- Library Sort
-- Patience Sort
-- Introsort
-- Fringe Sort
-- Unshuffle Sort
-- Spread Sort
-- Postman Sort
-- Cartesian Tree Sorting
-- Tree Sort
+- **Bubble Sort**: A simple sorting algorithm that repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. It's easy to understand but inefficient for large datasets.
+- **Selection Sort**: Works by repeatedly finding the minimum element from the unsorted part of the array and putting it at the beginning. Simple, but not suitable for large lists.
+- **Insertion Sort**: Builds the final sorted array one item at a time, inserting each element into its correct position. Efficient for small and mostly-sorted datasets.
+- **Merge Sort**: A divide and conquer algorithm that divides the input array into two halves, recursively sorts them, and then merges the sorted halves. Efficient and stable but requires extra space.
+- **Quick Sort**: An efficient, divide-and-conquer, and in-place sorting algorithm that works by selecting a 'pivot' element and partitioning the other elements into two sub-arrays according to whether they are less than or greater than the pivot.
+- **Heap Sort**: Converts the array into a heap, then repeatedly extracts the maximum element from the heap and rebuilds the heap until the array is sorted. Efficient and works in-place but not stable.
+- **Radix Sort**: A non-comparative integer sorting algorithm that sorts data with integer keys by grouping the keys by individual digits that share the same significant position and value.
+- **Counting Sort**: An integer sorting algorithm that operates by counting the number of objects that have distinct key values, then doing some arithmetic to calculate the position of each object in the output sequence.
+- **Bucket Sort**: Distributes elements into a number of buckets, sorts these buckets individually, and then concatenates them. Effective for uniformly distributed data.
+- **Shell Sort**: An in-place comparison sort which generalizes insertion sort by allowing the exchange of far-off elements, then progressively reducing the gap between elements to be compared.
+- **Cocktail Sort**: A variation of bubble sort that sorts in both directions on each pass through the list, reducing turtles (small values near the end of the list) in early stages.
+- **Comb Sort**: An improvement on bubble sort, that eliminates turtles by using a larger gap starting with the total list length, then shrinking the gap until it becomes 1 like in bubble sort.
+- **Gnome Sort**: Similar to insertion sort but moves elements to their proper place by a series of swaps, like a gnome sorting his flower pots.
+- **Odd-Even Sort**: A variation of bubble sort for parallel processing environments; it performs a sequence of odd-even transpositions which is similar to bubble sort.
+- **Cycle Sort**: An in-place and unstable sorting algorithm theoretically optimal in terms of total number of writes to the original array, making it useful for write-heavy memory.
+- **Stooge Sort**: A recursive sorting algorithm with a very poor time complexity, primarily of theoretical interest and often used as an example of a highly inefficient algorithm.
+- **Pigeonhole Sort**: Also known as bucket sort or counting sort, pigeonhole sort is used when the range of key values is small; it works by assigning elements to 'pigeonholes' based on their key values and then listing the elements of non-empty pigeonholes in order.
+- **Bitonic Sort**: A parallel algorithm for sorting, it works by recursively sorting bitonic sequences, which are sequences that increase and then decrease, or vice versa.
+- **Pancake Sort**: Involves flipping sub-arrays of a given array to sort the values, similar to sorting pancakes in size order with a spatula.
+- **Bogo Sort**: A highly inefficient sorting algorithm based on the generate and test paradigm; it randomly permutes its input until it finds a sorted sequence.
+- **Sleep Sort**: An unconventional sorting algorithm that creates a new thread for each item to be sorted, where each thread sleeps for an interval corresponding to the item's value, then emits the item.
+- **Bead Sort**: Also known as gravity sort, this natural sorting algorithm both distributes beads into columns and then counts the beads in each colum.
+- **Binary Tree Sort**: Builds a binary search tree from the keys of the input elements and then traverses the tree in-order to produce a sorted output.
+- **Batcher's Odd-Even Mergesort**: A merge sort variant that sorts the array by recursively dividing it into smaller arrays, then sorting and merging them using an odd-even merge.
+- **Smoothsort**: A comparison-based sorting algorithm that combines aspects of heap sort and insertion sort to sort the array while maintaining a heap within the array.
+- **Tournament Sort**: Builds a tournament tree (a form of min/max heap) to sort the elements. It's similar to heap sort but uses a binary tree structure.
+- **Cocktail Shaker Sort**: Also known as bidirectional bubble sort, it's a variation of bubble sort that sorts in both directions in each pass through the list.
+- **Strand Sort**: Works by repeatedly pulling sorted sublists out of the list to be sorted and merging them with the resulting
 
 ## Searching
 
-- Linear Search
-- Binary Search
-- Jump Search
-- Interpolation Search
-- Exponential Search
-- Ternary Search
-- Fibonacci Search
-- Sublist Search
-- The Ubiquitous Binary Search
-- Recursive Fibonacci Search
-- Unbounded Binary Search
-- Interpolation Search with duplicates
-- Recursive Binary Search
-- Recursive Ternary Search
-- Recursive Jump Search
-- Recursive Fibonacci Search
-- Recursive Interpolation Search
-- Recursive Exponential Search
-- Recursive Sublist Search
-- Recursive The Ubiquitous Binary Search
-- Recursive Unbounded Binary Search
-- Recursive Interpolation Search with duplicates
+- **Linear Search**: A simple search algorithm that checks every element in a list or array until it finds the target value. It's straightforward but inefficient for large datasets.
+- **Binary Search**: An efficient algorithm for finding an item in a sorted array by repeatedly dividing the search interval in half. It's much faster than linear search for large datasets.
+- **Jump Search**: An algorithm for sorted arrays that jumps ahead a fixed number of steps and then performs a linear search backwards. It's a balance between linear and binary search, offering better performance than linear search on sorted arrays.
+- **Interpolation Search**: Similar to binary search but estimates the position of the target value using the values of the endpoints. It's particularly efficient for uniformly distributed datasets.
+- **Exponential Search**: Starts with a subarray of size 1 and exponentially grows the size until the boundary of the target is found, then uses binary search within this boundary. It's useful for unbounded or infinite arrays.
+- **Ternary Search**: Divides the array into three parts and discards one or two parts based on comparisons, similar to binary search but with three sections. It can be slightly more efficient than binary search in some cases.
+- **Sublist Search**: A search algorithm to find a sublist within another list. It checks if the elements of one list appear in the same order in another list.
+- **Recursive Fibonacci Search**: A variant of binary search that uses Fibonacci numbers to divide the array and can be implemented recursively.
+- **Unbounded Binary Search**: Useful for searching in a sorted array of unknown or infinite size, typically starting with a bounded search and expanding as needed.
+- **Interpolation Search with duplicates**: Similar to binary search but calculates the probable position of the searched value. Efficiency can decrease when the array contains duplicate elements.
 
+### Recursive Searching
+
+- **Recursive Binary Search**: A binary search algorithm implemented using recursion, dividing the search interval in half each time.
+- **Recursive Ternary Search**: Divides the array into three parts and discards one or two parts each step, based on comparisons. It's a recursive implementation of ternary search.
+- **Recursive Fibonacci Search**: Implements Fibonacci search recursively. It divides the array at positions calculated based on Fibonacci numbers.
+- **Recursive Interpolation Search**: An implementation of interpolation search using recursion. It tries to guess the position of the searched value based on the values at the array's endpoints.
+- **Recursive Exponential Search**: Useful for unbounded searches. It first finds a range where the element might be by growing the bounds exponentially, then uses binary search within that range.
+- **Recursive Sublist Search**: Generally involves using a recursive approach to find a sublist within another list, though not a standard specific algorithm.
+- **Recursive Unbounded Binary Search**: An unbounded binary search implemented recursively, suitable for infinite or unknown size arrays, where it first finds a bound and then applies binary search.
+- **Recursive Interpolation Search with duplicates**: A recursive version of interpolation search that can be less efficient in the presence of duplicate elements in the array.
+  
 ## Graphs
 
 - Breadth First Search
