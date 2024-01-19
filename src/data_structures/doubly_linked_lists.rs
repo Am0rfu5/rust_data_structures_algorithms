@@ -6,7 +6,10 @@
  * 
  * A doubly linked list is a linear data structure, in which the elements are not stored at contiguous memory locations.
  * 
- * There is LinkedList built into the Rust standard library, but it is not doubly linked.
+ * There is LinkedList built into the Rust standard library is doubly linked.
+ * 
+ * From the Rust Book: "It is almost always better to use Vec or VecDeque (ed: a ring buffer) because array-based containers are generally faster , more memory efficient and make better use of CPU cache."
+ * (see https://doc.rust-lang.org/std/collections/linked_list/index.html#)
  */
 pub struct DoublyLinkedList<T> {
     head: Option<Box<Node<T>>>,
