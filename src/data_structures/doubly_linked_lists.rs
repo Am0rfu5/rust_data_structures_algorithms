@@ -1,12 +1,16 @@
 /** 
  * Doubly Linked Lists
  * 
- * Time Complexity: O(1) Constant Time Complexity
+ * Time Complexity: O(1) Constant Time Complexity for push_front, push_back, pop_front, pop_back, peek_front, peek_back
  * Space Complexity: O(n) Linear Space Complexity
  * 
- * A doubly linked list is a linear data structure, in which the elements are not stored at contiguous memory locations.
+ * A custom doubly linked list is a linear data structure, in which the elements are not stored at contiguous memory locations.
  * 
- * There is LinkedList built into the Rust standard library is doubly linked.
+ * There is LinkedList built into the Rust standard library that is doubly linked. 
+ * This is not that implementation which uses unsafe code and is optimized for performance.
+ * This is an example implementation used for understanding the data structure.
+ * If you build your own take time to view the source code for the standard library implementation.
+ * (see https://doc.rust-lang.org/src/alloc/collections/linked_list.rs.html#51-60)
  * 
  * From the Rust Book: "It is almost always better to use Vec or VecDeque (ed: a ring buffer) because array-based containers are generally faster , more memory efficient and make better use of CPU cache."
  * (see https://doc.rust-lang.org/std/collections/linked_list/index.html#)
@@ -17,52 +21,102 @@ pub struct DoublyLinkedList<T> {
     size: usize,
 }
 
+impl<T: Clone> Clone for DoublyLinkedList<T> {
+    fn clone(&self) -> Self {
+        DoublyLinkedList {
+            head: self.head.clone(),
+            tail: self.tail.clone(),
+            size: self.size,
+        }
+    }
+}
+
 struct Node<T> {
     data: T,
     next: Option<Box<Node<T>>>,
     prev: Option<Box<Node<T>>>,
 }
 
+impl<T> Clone for Node<T>
+where
+    T: Clone,
+{
+    fn clone(&self) -> Self {
+        Node {
+            data: self.data.clone(),
+            next: self.next.clone(),
+            prev: self.prev.clone(),
+        }
+    }
+}
+
+impl<T> Node<T> {
+    fn next(&self) -> Option<&Box<Node<T>>> {
+        self.next.as_ref()
+    }
+
+    fn prev(&self) -> Option<&Box<Node<T>>> {
+        self.prev.as_ref()
+    }
+
+    fn next_mut(&mut self) -> Option<&mut Box<Node<T>>> {
+        self.next.as_mut()
+    }
+
+    fn prev_mut(&mut self) -> Option<&mut Box<Node<T>>> {
+        self.prev.as_mut()
+    }
+    
+    fn new(data: T) -> Self {
+        Node { data, next: None, prev: None }
+    }
+    
+}
+
 impl<T> DoublyLinkedList<T> {
-    // ... (other methods remain the same) ...
+    
+    pub fn new() -> Self {
+        DoublyLinkedList { head: None, tail: None, size: 0 }
+    }
 
     pub fn push_front(&mut self, data: T) {
         let mut new_node = Box::new(Node {
             data,
-            next: self.head.take(),
+            next: None, // Initially None, will be set below
             prev: None,
         });
-        match self.head.take() {
-            Some(old_head) => {
-                old_head.prev = Some(new_node.clone());
-                new_node.next = Some(old_head);
-                self.head = Some(new_node);
-            },
-            None => {
-                self.tail = Some(new_node.clone());
-                self.head = Some(new_node);
-            }
-        }
+
+        // Update the head to be the new node
+        self.head = Some(new_node.next.take().unwrap());
         self.size += 1;
     }
 
     pub fn push_back(&mut self, data: T) {
-        let mut new_node = Box::new(Node {
-            data,
-            next: None,
-            prev: self.tail.take(),
-        });
-        match self.tail.take() {
-            Some(old_tail) => {
-                old_tail.next = Some(new_node.clone());
-                new_node.prev = Some(old_tail);
-                self.tail = Some(new_node);
-            },
-            None => {
-                self.head = Some(new_node.clone());
-                self.tail = Some(new_node);
+        let mut new_node = Box::new(Node::new(data));
+
+        if self.head.is_none() {
+            // The list is initially empty, so the new node becomes both head and tail.
+            // We use Box::into_raw to get a raw pointer to the new node.
+            let raw_new_node = Box::into_raw(new_node);
+
+            // Since the list is empty, head and tail point to the same node.
+            self.head = Some(unsafe { Box::from_raw(raw_new_node) });
+            self.tail = Some(unsafe { Box::from_raw(raw_new_node) });
+        } else {
+            new_node.prev = self.tail.take();
+
+            // We use Box::into_raw to avoid multiple ownership of the new node.
+            let raw_new_node = Box::into_raw(new_node);
+
+            // Update the old tail's next to point to the new node.
+            unsafe {
+                (*raw_new_node).prev.as_mut().unwrap().as_mut().next = Some(Box::from_raw(raw_new_node));
             }
+
+            // Update the list's tail to the new node.
+            self.tail = Some(unsafe { Box::from_raw(raw_new_node) });
         }
+
         self.size += 1;
     }
     
@@ -186,19 +240,21 @@ pub struct IterRevMut<'a, T: 'a> {
 /**
  * An iterator over the doubly linked list.
  */ 
-pub struct IntoIter<T>(doublyLinkedList<T>);
+pub struct IntoIter<T>(DoublyLinkedList<T>);
 
 /**
  * An iterator over the doubly linked list in reverse.
  */
-pub struct IntoIterRev<T>(doublyLinkedList<T>);
+pub struct IntoIterRev<T>(DoublyLinkedList<T>);
 
+
+// Forward Iterators
 impl<'a, T> Iterator for Iter<'a, T> {
     type Item = &'a T;
     
     fn next(&mut self) -> Option<Self::Item> {
-        self.next.map(|node| {
-            self.next = node.next.as_ref().map(|node| &**node);
+        self.next.take().map(|node| {
+            self.next = node.next().map(|node| &**node);
             &node.data
         })
     }
@@ -206,21 +262,22 @@ impl<'a, T> Iterator for Iter<'a, T> {
 
 impl<'a, T> Iterator for IterMut<'a, T> {
     type Item = &'a mut T;
-    
+
     fn next(&mut self) -> Option<Self::Item> {
         self.next.take().map(|node| {
-            self.next = node.next.as_mut().map(|node| &mut **node);
+            self.next = node.next_mut().map(|next_node| &mut **next_node);
             &mut node.data
         })
     }
 }
 
+// Reverse Iterators
 impl<'a, T> Iterator for IterRev<'a, T> {
     type Item = &'a T;
     
     fn next(&mut self) -> Option<Self::Item> {
-        self.next.map(|node| {
-            self.next = node.prev.as_ref().map(|node| &**node);
+        self.next.take().map(|node| {
+            self.next = node.prev().map(|node| &**node);
             &node.data
         })
     }
@@ -228,15 +285,17 @@ impl<'a, T> Iterator for IterRev<'a, T> {
 
 impl<'a, T> Iterator for IterRevMut<'a, T> {
     type Item = &'a mut T;
-    
+
     fn next(&mut self) -> Option<Self::Item> {
         self.next.take().map(|node| {
-            self.next = node.prev.as_mut().map(|node| &mut **node);
+            self.next = node.prev_mut().map(|prev_node| &mut **prev_node);
             &mut node.data
         })
     }
 }
 
+
+// Consuming Iterators
 impl<T> Iterator for IntoIter<T> {
     type Item = T;
     
@@ -257,9 +316,10 @@ impl<T> Iterator for IntoIterRev<T> {
 mod tests {
     use super::*;
 
+    
     #[test]
     fn test_doubly_linked_list() {
-        let mut list = doublyLinkedList::new();
+        let mut list = DoublyLinkedList::new();
         assert_eq!(list.size(), 0);
         assert_eq!(list.peek_front(), None);
         assert_eq!(list.peek_back(), None);
