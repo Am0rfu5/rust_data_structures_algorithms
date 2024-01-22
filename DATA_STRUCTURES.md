@@ -6,7 +6,7 @@ For Rust specific visualization of the metadata for heap containers (e.g. Box, V
 
 Eventually we expect to add links. For now, visit the [src](src/data_structures/) directory to see the progress on various data structures, including:
 
-### Linear Structures
+### Linear Structures (Sequence Containers)
 - **Array**: Stores elements in a contiguous block of memory.
 - **Dynamic Array (ArrayList)**: Similar to an array but allows resizable storage.
 - **Linked List**: Consists of nodes with data and references to the next node in the sequence.
@@ -43,9 +43,9 @@ For Rust implementations the standard library types are referenced where applica
 
 | Name                    | Rust Implementation           | Common Use Cases                         | Big O Worst Case Time Complexity | Big O Worst Case Memory Complexity |
 |-------------------------|-------------------------------|------------------------------------------|----------------------------------|------------------------------------|
-| Array                   | `[T; N]` or `Vec<T>`          | Storing a fixed/variable number of elements | Access: O(1), Insert/Delete: O(n) | O(n) |
-| Linked List             | `std::collections::LinkedList` | Sequences with frequent insertions and deletions | Access/Insert/Delete: O(n)       | O(n) |
-| Doubly Linked List      | `std::collections::LinkedList` | Sequences with frequent insertions and deletions at both ends | Access/Insert/Delete: O(n)       | O(n) |
+| Array                   | [`[T; N]`](https://doc.rust-lang.org/std/primitive.array.html) or [`Vec<T>`](https://doc.rust-lang.org/std/vec/struct.Vec.html)          | Storing a fixed/variable number of elements | Access: O(1), Insert/Delete: O(n) | O(n) |
+| Linked List             | [`std::collections::LinkedList`](https://doc.rust-lang.org/std/collections/struct.LinkedList.html)* | Sequences with frequent insertions and deletions | Access/Insert/Delete: O(n)       | O(n) |
+| Doubly Linked List      | [`std::collections::LinkedList`](https://doc.rust-lang.org/std/collections/struct.LinkedList.html) | Sequences with frequent insertions and deletions at both ends | Access/Insert/Delete: O(n)       | O(n) |
 | Circular Buffer         | `std::collections::VecDeque`  | Fixed-size buffer with wrap-around semantics | Access: O(1), Insert/Delete: O(1) | O(n) |
 | Stack                   | `Vec<T>`                      | LIFO operations, undo mechanisms, parsing | Push/Pop: O(1)                    | O(n) |
 | Queue                   | `std::collections::VecDeque`  | FIFO operations, task scheduling         | Enqueue/Dequeue: O(1)             | O(n) |
@@ -60,7 +60,10 @@ For Rust implementations the standard library types are referenced where applica
 | Skip List               | Custom implementation         | Probabilistic data structures, fast search | Search/Insert/Delete: O(log n)    | O(n log n) |
 | Union-Find              | Custom implementation         | Disjoint-set operations                    | Union/Find: O(log n)              | O(n) |
 
-Note: The Rust implementations column mentions types from the Rust standard library where possible. For data structures not directly available, custom implementations are typically used, which can vary in complexity and performance characteristics. The time and memory complexities are approximate and can vary based on specific implementations and use cases.
+!!!
+NOTE: The time and memory complexities are approximate and can vary based on specific implementations and use cases. [More information is given in the rust documentation for each type.](https://doc.rust-lang.org/std/collections/index.html#sequences)
+
+*LinkedLists in Rust are implemented as a doubly linked list. A Singly Linked List can be implemented by using this type with out insignificant added complexity in most cases.
 
 Each of these structures is chosen based on specific requirements such as access speed, memory efficiency, and the nature of the operations performed.
 
