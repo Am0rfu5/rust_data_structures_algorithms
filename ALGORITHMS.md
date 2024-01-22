@@ -44,6 +44,41 @@ There is a great visualization at [VisuAlgo](https://visualgo.net/en) that shows
 - **Cocktail Shaker Sort**: Also known as bidirectional bubble sort, it's a variation of bubble sort that sorts in both directions in each pass through the list.
 - **Strand Sort**: Works by repeatedly pulling sorted sublists out of the list to be sorted and merging them with the resulting
 
+Below is a table of sorting algorithms with their details. For some algorithms, there are no direct equivalents in the Rust standard library or commonly used crates.
+
+| Name | Rust Implementation | Common Use Cases | Big O Worst Case Time Complexity | Big O Worst Case Memory Complexity |
+|------|---------------------|------------------|----------------------------------|------------------------------------|
+| Bubble Sort | [Custom Example](./src/sorting/bubble_sort.rs) | Small datasets, educational purposes | O(n²) | O(1) |
+| Selection Sort | Custom implementation | Small datasets, educational purposes | O(n²) | O(1) |
+| Insertion Sort | Custom implementation | Small or mostly sorted datasets | O(n²) | O(1) |
+| Merge Sort | `std::vec::Vec::sort` | General purpose | O(n log n) | O(n) |
+| Quick Sort | `std::vec::Vec::sort_unstable` | General purpose | O(n²) | O(log n) |
+| Heap Sort | `std::collections::BinaryHeap` | General purpose | O(n log n) | O(n) |
+| Radix Sort | `radix_sort` crate | Sorting integers | O(nk) | O(n + k) |
+| Counting Sort | Custom implementation | Integer sorting with small range | O(n + k) | O(n + k) |
+| Bucket Sort | Custom implementation | Uniformly distributed data | O(n²) | O(n) |
+| Shell Sort | Custom implementation | General purpose | O(n(log n)²) | O(1) |
+| Cocktail Sort | Custom implementation | Small datasets, educational purposes | O(n²) | O(1) |
+| Comb Sort | Custom implementation | Improvement over bubble sort | O(n²) | O(1) |
+| Gnome Sort | Custom implementation | Small datasets, similar to insertion sort | O(n²) | O(1) |
+| Odd-Even Sort | Custom implementation | Parallel processing environments | O(n²) | O(1) |
+| Cycle Sort | Custom implementation | Minimizing writes to memory | O(n²) | O(1) |
+| Stooge Sort | Custom implementation | Educational, example of inefficiency | O(n^(log 3/log 1.5)) | O(n) |
+| Pigeonhole Sort | Custom implementation | Small range of key values | O(n + k) | O(n + k) |
+| Bitonic Sort | Custom implementation | Parallel sorting | O(log²n) | O(n log n) |
+| Pancake Sort | Custom implementation | Educational, novelty use | O(n²) | O(1) |
+| Bogo Sort | Custom implementation | Educational, example of inefficiency | O((n+1)!) | O(1) |
+| Sleep Sort | Custom implementation | Novelty use, unconventional | Unpredictable | O(n) |
+| Bead Sort | Custom implementation | Positive integers, novelty | O(n²) | O(n²) |
+| Binary Tree Sort | `std::collections::BTreeMap` (indirectly) | General purpose | O(n log n) | O(n) |
+| Batcher's Odd-Even Mergesort | Custom implementation | Parallel sorting | O(log²n) | O(n) |
+| Smoothsort | Custom implementation | Variation of heapsort | O(n log n) | O(1) |
+| Tournament Sort | Custom implementation | Heap sort variation | O(n log n) | O(n) |
+| Cocktail Shaker Sort | Custom implementation | Variation of bubble sort | O(n²) | O(1) |
+| Strand Sort | Custom implementation | Sorting linked lists | O(n²) | O(1) |
+
+Note: The Big O complexities are for the worst-case scenarios. Some algorithms may have better average-case complexities. Memory complexity often refers to additional memory needed besides the input data. For sorting small arrays or lists, simpler algorithms like Insertion Sort or Bubble Sort might be more efficient due to their lower overhead despite higher theoretical complexities. In contrast, algorithms like Quick Sort and Merge Sort are better suited for larger datasets.
+
 ## Searching
 
 - **Linear Search**: A simple search algorithm that checks every element in a list or array until it finds the target value. It's straightforward but inefficient for large datasets.
