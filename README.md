@@ -1,6 +1,6 @@
 # Data Structures and Algorithms (DSA) using Rust
 
-This repository contains implementations of various data structures and algorithms in Rust. This is a way to learn Rust by example.
+Information about the implementing various data structures and algorithms in Rust. This is both an education resource and reference.
 
 Eventually it is my hope that this library may be used to for evaluating performance for each algorithm in order to provide more insight for understanding and selection under various conditions.
 
