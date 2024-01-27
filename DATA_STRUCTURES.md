@@ -1,12 +1,17 @@
 # Data Structures
 
+!!!
 For Rust specific visualization of the metadata for heap containers (e.g. Box, Vec, Rc, Arc, Cell) checkout  https://docs.google.com/presentation/d/1q-c7UAyrUlM-eZyTo1pd8SZ0qwA_wYxmPZVOQkoDmH4/edit#slide=id.p
 
 ## Overview
 
-Eventually we expect to add links. For now, visit the [src](src/data_structures/) directory to see the progress on various data structures, including:
+Many of these data structures are implemented in Rust's standard library as collections ([std::collections](https://doc.rust-lang.org/std/collections/index.html)) or there are crates which are well vetted. There are still occasions where a requirement for extreme efficiency may lead to the need for custom implementation but that is out of scope. The goal of this section is to provide a high-level overview of the most common data structures and their use cases. 
 
-### Linear Structures (Sequence Containers)
+The [Rust docs](https://doc.rust-lang.org/std/collections/index.html) also cover much of the same ground and goes more in depth so each implementation is also linked to for further study. The Rust docs also provide a good overview of the [tradeoffs between the different types of collections](https://doc.rust-lang.org/std/collections/index.html#tradeoffs) 
+
+## Sequence Containers
+
+### Linear Structures
 - **Array**: Stores elements in a contiguous block of memory.
 - **Dynamic Array (ArrayList)**: Similar to an array but allows resizable storage.
 - **Linked List**: Consists of nodes with data and references to the next node in the sequence.
@@ -18,12 +23,15 @@ Eventually we expect to add links. For now, visit the [src](src/data_structures/
 - **Queue**: A FIFO (First In, First Out) data structure.
 - **Priority Queue**: Elements are removed based on priority, not just insertion order.
 
+## Associative Structures
+
 ### Tree and Heap Structures
 - **Binary Tree**: A tree where each node has at most two children.
 - **Binary Search Tree (BST)**: A binary tree maintaining order among elements for efficient search.
 - **Balanced Trees**: Including AVL, Red-Black, and Splay trees.
 - **Heap**: A tree-based structure satisfying the heap property.
 - **B+ Tree**: A type of tree that maintains sorted data and allows searches, sequential access, insertions, and deletions in logarithmic time.
+- **Trie**: A tree-like structure for efficient retrieval of keys in a dataset of strings.
 
 ### Associative Structures
 - **Hash Table**: Maps keys to values, implementing an associative array.
@@ -35,7 +43,6 @@ Eventually we expect to add links. For now, visit the [src](src/data_structures/
 - **Graph Variants**: Includes directed, undirected, and weighted graphs.
 
 ### Advanced and Specialized Structures
-- **Trie**: A tree-like structure for efficient retrieval of keys in a dataset of strings.
 - **Skip List**: A probabilistic structure allowing fast search, insertion, and deletion.
 - **Union-Find (Disjoint Set)**: Keeps track of elements partitioned into disjoint subsets.
 
