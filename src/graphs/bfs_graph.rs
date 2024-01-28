@@ -3,6 +3,9 @@
  * 
  * Breadth First Search is a graph traversal algorithm that traverses a graph level by level.
  * 
+ * Time Complexity: O(V + E)
+ * Space Complexity: O(V)
+ * 
  * Notice in the tests that there are multiple paths to the same node but it fails to find one path.
  * This is because the algorithm uses .get() on the HashMap which returns the last inserted value, similar to .pop().
  */
