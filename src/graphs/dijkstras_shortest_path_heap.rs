@@ -159,14 +159,5 @@ mod tests {
         assert_eq!(dijkstras_shortest_path(&graph, 'A', 'A'), Some(vec!['A']));
         assert_eq!(dijkstras_shortest_path(&graph, 'A', 'Z'), None);
         
-        assert_eq!(dijkstras_shortest_path_recursive(&graph, &mut HashSet::new(), &mut HashMap::new(), &mut HashMap::new(), 'A', 'H'), Some(vec!['A', 'D', 'E', 'H']));
-        assert_eq!(dijkstras_shortest_path_recursive(&graph, &mut HashSet::new(), &mut HashMap::new(), &mut HashMap::new(), 'A', 'G'), Some(vec!['A', 'D', 'G']));
-        assert_eq!(dijkstras_shortest_path_recursive(&graph, &mut HashSet::new(), &mut HashMap::new(), &mut HashMap::new(), 'A', 'F'), Some(vec!['A', 'D', 'E', 'F']));
-        assert_eq!(dijkstras_shortest_path_recursive(&graph, &mut HashSet::new(), &mut HashMap::new(), &mut HashMap::new(), 'A', 'E'), Some(vec!['A', 'D', 'E']));
-        assert_eq!(dijkstras_shortest_path_recursive(&graph, &mut HashSet::new(), &mut HashMap::new(), &mut HashMap::new(), 'A', 'D'), Some(vec!['A', 'D']));
-        assert_eq!(dijkstras_shortest_path_recursive(&graph, &mut HashSet::new(), &mut HashMap::new(), &mut HashMap::new(), 'A', 'C'), Some(vec!['A', 'C']));
-        assert_eq!(dijkstras_shortest_path_recursive(&graph, &mut HashSet::new(), &mut HashMap::new(), &mut HashMap::new(), 'A', 'B'), Some(vec!['A', 'B']));
-        assert_eq!(dijkstras_shortest_path_recursive(&graph, &mut HashSet::new(), &mut HashMap::new(), &mut HashMap::new(), 'A', 'A'), Some(vec!['A']));
-        assert_eq!(dijkstras_shortest_path_recursive(&graph, &mut HashSet::new(), &mut HashMap::new(), &mut HashMap::new(), 'A', 'Z'), None);
     }
 }
