@@ -4,3 +4,4 @@ pub mod recursion;
 pub mod graphs;
 pub mod searching;
 pub mod generation;
+pub mod trees;
